@@ -65,4 +65,4 @@ npm start
 ---
 
 ## 라이선스
-이 프로젝트는 GPL-3.0 License를 따릅니다.
+이 프로젝트는 AGPL-3.0 License를 따릅니다.
