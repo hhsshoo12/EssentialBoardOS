@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "client": "vite",
+    "dev": "vite --host",
+    "client": "vite --host",
     "server": "npm start --prefix server",
     "start": "concurrently \"npm run client\" \"npm run server\"",
     "build": "vite build",

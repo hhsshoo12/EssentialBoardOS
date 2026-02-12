@@ -66,12 +66,13 @@ app.use((err, req, res, next) => {
 
 /* ── Start ── */
 ensureDataDirs().then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`
-╔═══════════════════════════════════════╗
-║   EssentialBoardOS Server v1.0        ║
-║   Running on http://localhost:${PORT}    ║
-╚═══════════════════════════════════════╝
+╔═══════════════════════════════════════════════╗
+║      EssentialBoardOS Server v1.0             ║
+║   Network: http://0.0.0.0:${PORT}              ║
+║   Local:   http://localhost:${PORT}            ║
+╚═══════════════════════════════════════════════╝
     `)
     })
 })

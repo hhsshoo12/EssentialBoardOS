@@ -1,0 +1,17 @@
+{
+    "name": "EssentialBoardOS",
+    "short_name": "EBOS",
+    "description": "Next-generation dashboard and mini-app ecosystem",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#2d2d3f",
+    "theme_color": "#2d2d3f",
+    "icons": [
+        {
+            "src": "EB.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        }
+    ]
+}
