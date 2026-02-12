@@ -1,0 +1,106 @@
+.programbar {
+    width: var(--programbar-width);
+    height: 100vh;
+    background: var(--bg-dock);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+    gap: 6px;
+    z-index: 100;
+    animation: slideInLeft 0.4s ease;
+}
+
+.programbar-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    letter-spacing: -1px;
+}
+
+.programbar-divider {
+    width: 36px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 4px 0;
+}
+
+.programbar-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.programbar-btn:hover {
+    background: rgba(124, 111, 247, 0.12);
+    color: var(--text-primary);
+    transform: scale(1.08);
+}
+
+.programbar-btn.active {
+    background: rgba(124, 111, 247, 0.18);
+    color: var(--accent-primary);
+    box-shadow: var(--neu-shadow-pressed);
+}
+
+.programbar-btn.active::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 22px;
+    background: var(--accent-gradient);
+    border-radius: 0 4px 4px 0;
+}
+
+.programbar-btn .tooltip {
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-fast);
+    box-shadow: var(--neu-shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.programbar-btn:hover .tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.programbar-spacer {
+    flex: 1;
+}

@@ -1,0 +1,253 @@
+.notepad {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+}
+
+/* ── Toolbar ── */
+.notepad-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    flex-wrap: wrap;
+}
+
+.notepad-toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.notepad-toolbar-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all var(--transition-fast);
+    box-shadow: var(--neu-shadow-soft);
+}
+
+.notepad-toolbar-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+}
+
+.notepad-toolbar-btn.active {
+    color: var(--accent-primary);
+    box-shadow: var(--neu-shadow-pressed);
+}
+
+.notepad-toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.06);
+    margin: 0 4px;
+}
+
+.notepad-file-name {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+    padding: 4px 10px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+}
+
+/* ── Editor ── */
+.notepad-content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+.notepad-editor {
+    flex: 1;
+    padding: 20px 24px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    tab-size: 4;
+}
+
+.notepad-editor::placeholder {
+    color: var(--text-muted);
+}
+
+/* ── Markdown Preview ── */
+.notepad-preview {
+    flex: 1;
+    padding: 20px 24px;
+    overflow-y: auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.04);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.notepad-preview h1,
+.notepad-preview h2,
+.notepad-preview h3 {
+    color: var(--text-accent);
+    margin: 16px 0 8px;
+}
+
+.notepad-preview h1 {
+    font-size: 24px;
+}
+
+.notepad-preview h2 {
+    font-size: 20px;
+}
+
+.notepad-preview h3 {
+    font-size: 16px;
+}
+
+.notepad-preview p {
+    margin-bottom: 10px;
+}
+
+.notepad-preview code {
+    background: var(--bg-surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+    color: var(--text-accent);
+}
+
+.notepad-preview pre {
+    background: var(--bg-surface);
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    margin: 10px 0;
+}
+
+.notepad-preview pre code {
+    background: none;
+    padding: 0;
+}
+
+.notepad-preview strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.notepad-preview em {
+    color: var(--text-secondary);
+}
+
+.notepad-preview ul,
+.notepad-preview ol {
+    padding-left: 24px;
+    margin-bottom: 10px;
+}
+
+.notepad-preview blockquote {
+    border-left: 3px solid var(--accent-primary);
+    padding: 8px 16px;
+    margin: 10px 0;
+    background: rgba(124, 111, 247, 0.06);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--text-secondary);
+}
+
+/* ── File List Modal ── */
+.notepad-filelist {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    max-height: 400px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    animation: scaleIn 0.2s ease;
+}
+
+.notepad-filelist-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notepad-filelist-body {
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.notepad-filelist-item {
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notepad-filelist-item:hover {
+    background: rgba(124, 111, 247, 0.1);
+    color: var(--text-primary);
+}
+
+.notepad-filelist-item .date {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.notepad-filelist-empty {
+    padding: 30px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.notepad-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 199;
+}
+
+/* ── Status Bar ── */
+.notepad-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 16px;
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 11px;
+    color: var(--text-muted);
+}

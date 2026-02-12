@@ -1,0 +1,198 @@
+.dday {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+    overflow-y: auto;
+}
+
+.dday-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dday-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.dday-add-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--accent-gradient);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--accent-glow);
+    transition: all var(--transition-fast);
+}
+
+.dday-add-btn:hover {
+    box-shadow: 0 4px 16px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+/* ── Form ── */
+.dday-form {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--neu-shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeIn 0.2s ease;
+}
+
+.dday-input {
+    padding: 10px 12px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+.dday-input:focus {
+    border-color: var(--accent-primary);
+}
+
+.dday-colors {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.dday-color-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.dday-color-btn.active {
+    border-color: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    transform: scale(1.15);
+}
+
+.dday-submit-btn {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+/* ── List ── */
+.dday-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dday-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ── Card ── */
+.dday-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    box-shadow: var(--neu-shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.dday-card.past {
+    opacity: 0.6;
+}
+
+.dday-card.today {
+    border-color: rgba(251, 191, 36, 0.4);
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.15), var(--neu-shadow-soft);
+}
+
+.dday-card-accent {
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+.dday-card-body {
+    flex: 1;
+    padding-left: 8px;
+}
+
+.dday-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.dday-card-date {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.dday-card-count {
+    font-size: 20px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.dday-card-delete {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all var(--transition-fast);
+}
+
+.dday-card:hover .dday-card-delete {
+    opacity: 1;
+}
+
+.dday-card-delete:hover {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.15);
+}

@@ -1,0 +1,130 @@
+.quicknote {
+    position: absolute;
+    border-radius: var(--radius-md);
+    box-shadow:
+        4px 4px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    transition: box-shadow var(--transition-normal);
+    min-width: 160px;
+    min-height: 120px;
+    animation: scaleIn 0.25s ease;
+}
+
+.quicknote:hover {
+    box-shadow:
+        6px 6px 20px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.quicknote-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    cursor: grab;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    user-select: none;
+}
+
+.quicknote-header:active {
+    cursor: grabbing;
+}
+
+.quicknote-header-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.quicknote-header-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.quicknote-delete {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all var(--transition-fast);
+    opacity: 0;
+}
+
+.quicknote:hover .quicknote-delete {
+    opacity: 1;
+}
+
+.quicknote-delete:hover {
+    background: rgba(255, 75, 75, 0.25);
+    color: #d32f2f;
+}
+
+.quicknote-body {
+    flex: 1;
+    padding: 4px 10px 10px;
+}
+
+.quicknote-textarea {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--note-text);
+}
+
+.quicknote-textarea::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.quicknote-resize {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.quicknote:hover .quicknote-resize {
+    opacity: 0.3;
+}
+
+.quicknote-resize::before,
+.quicknote-resize::after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1px;
+}
+
+.quicknote-resize::before {
+    bottom: 3px;
+    right: 3px;
+    width: 8px;
+    height: 2px;
+}
+
+.quicknote-resize::after {
+    bottom: 3px;
+    right: 3px;
+    width: 2px;
+    height: 8px;
+}

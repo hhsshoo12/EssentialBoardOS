@@ -1,0 +1,14 @@
+.whiteboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+.wb-excalidraw {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

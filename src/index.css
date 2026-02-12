@@ -1,0 +1,249 @@
+/* ═══════════════════════════════════════════════════
+   EssentialBoardOS - Neumorphism Design System
+   Ubuntu GNOME inspired, Outfit font
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  /* ── Base Colors ── */
+  --bg-primary: #2d2d3f;
+  --bg-secondary: #252536;
+  --bg-surface: #33334a;
+  --bg-elevated: #3a3a54;
+  --bg-dock: rgba(30, 30, 48, 0.85);
+
+  /* ── Accent ── */
+  --accent-primary: #7c6ff7;
+  --accent-secondary: #6c5ce7;
+  --accent-glow: rgba(124, 111, 247, 0.35);
+  --accent-gradient: linear-gradient(135deg, #7c6ff7, #a78bfa);
+
+  /* ── Text ── */
+  --text-primary: #e8e6f0;
+  --text-secondary: #a09cb5;
+  --text-muted: #6e6a82;
+  --text-accent: #b8b0f7;
+
+  /* ── Neumorphism Shadows ── */
+  --neu-shadow-raised:
+    6px 6px 14px rgba(0, 0, 0, 0.45),
+    -6px -6px 14px rgba(80, 80, 120, 0.12);
+  --neu-shadow-pressed:
+    inset 4px 4px 10px rgba(0, 0, 0, 0.4),
+    inset -4px -4px 10px rgba(80, 80, 120, 0.1);
+  --neu-shadow-soft:
+    4px 4px 10px rgba(0, 0, 0, 0.3),
+    -4px -4px 10px rgba(80, 80, 120, 0.08);
+  --neu-shadow-glow:
+    0 0 20px var(--accent-glow),
+    6px 6px 14px rgba(0, 0, 0, 0.45),
+    -6px -6px 14px rgba(80, 80, 120, 0.12);
+
+  /* ── Sizing ── */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-full: 50%;
+
+  /* ── Transitions ── */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Program Bar ── */
+  --programbar-width: 72px;
+
+  /* ── Sticky Note Colors ── */
+  --note-yellow: #fef3c7;
+  --note-pink: #fce4ec;
+  --note-blue: #e0f2fe;
+  --note-green: #d1fae5;
+  --note-purple: #ede9fe;
+  --note-text: #2d2d3f;
+}
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  /* Touch: prevent pull-to-refresh, double-tap zoom */
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Allow text selection in text inputs/textareas */
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+  touch-action: auto;
+}
+
+/* Minimum touch target sizes */
+button,
+.wb-tool-btn,
+.mb-nav-btn,
+.mb-tab,
+.pin-dot {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ═══ Neumorphism Components ═══ */
+
+.neu-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-shadow-raised);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.neu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neu-shadow-soft);
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  user-select: none;
+}
+
+.neu-btn:hover {
+  background: var(--bg-elevated);
+  box-shadow: var(--neu-shadow-raised);
+  transform: translateY(-1px);
+}
+
+.neu-btn:active {
+  box-shadow: var(--neu-shadow-pressed);
+  transform: translateY(0);
+}
+
+.neu-btn.accent {
+  background: var(--accent-gradient);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.neu-btn.accent:hover {
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+.neu-input {
+  padding: 10px 14px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neu-shadow-pressed);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: all var(--transition-normal);
+}
+
+.neu-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: var(--neu-shadow-pressed), 0 0 0 2px var(--accent-glow);
+}
+
+.neu-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Utility ── */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

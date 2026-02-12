@@ -1,0 +1,16 @@
+{
+    "name": "essentialboard-os-server",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "EssentialBoardOS Backend Server",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "node --watch index.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.0",
+        "express": "^4.21.0"
+    }
+}

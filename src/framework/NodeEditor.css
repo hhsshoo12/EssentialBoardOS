@@ -1,0 +1,623 @@
+/* ═══════════════════════════════════════════════════
+   NodeEditor - 블루프린트 스타일 비주얼 에디터
+   ═══════════════════════════════════════════════════ */
+
+.node-editor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+/* ── Palette (Left) ── */
+.ne-palette {
+    width: 200px;
+    background: var(--bg-secondary);
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.ne-palette-header {
+    padding: 12px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ne-palette-category {
+    padding: 8px 0;
+}
+
+.ne-palette-cat-title {
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ne-palette-cat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.ne-palette-item {
+    padding: 6px 14px 6px 28px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: grab;
+    transition: all var(--transition-fast);
+    user-select: none;
+}
+
+.ne-palette-item:hover {
+    background: rgba(124, 111, 247, 0.1);
+    color: var(--text-primary);
+}
+
+.ne-palette-item:active {
+    cursor: grabbing;
+}
+
+/* ── Mode Tabs ── */
+.ne-mode-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ne-mode-tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.ne-mode-tab:hover {
+    color: var(--text-secondary);
+}
+
+.ne-mode-tab.active {
+    color: var(--accent-primary);
+    background: rgba(124, 111, 247, 0.08);
+    border-bottom: 2px solid var(--accent-primary);
+}
+
+/* ── UI Palette ── */
+.ne-ui-palette-item {
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition-fast);
+}
+
+.ne-ui-palette-item:hover {
+    background: rgba(124, 111, 247, 0.1);
+    color: var(--text-primary);
+}
+
+.ne-ui-icon {
+    font-size: 16px;
+}
+
+/* ── Canvas Area (Center) ── */
+.ne-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ne-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ne-toolbar-btn {
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: var(--neu-shadow-soft);
+    transition: all var(--transition-fast);
+}
+
+.ne-toolbar-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+}
+
+.ne-toolbar-btn.accent {
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.ne-toolbar-btn.accent:hover {
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.ne-toolbar-spacer {
+    flex: 1;
+}
+
+.ne-toolbar-name {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.ne-toolbar-name input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    outline: none;
+    width: 150px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2px 4px;
+}
+
+.ne-display-mode-select {
+    padding: 4px 8px;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    outline: none;
+    cursor: pointer;
+}
+
+.ne-display-mode-select:focus {
+    border-color: var(--accent-primary);
+}
+
+/* ── Canvas ── */
+.ne-canvas-area {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    cursor: default;
+}
+
+.ne-canvas-area.panning {
+    cursor: grabbing;
+}
+
+.ne-canvas-inner {
+    position: absolute;
+    width: 10000px;
+    height: 10000px;
+    will-change: transform;
+}
+
+/* ── SVG Connections ── */
+.ne-connections-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ne-connection-line {
+    fill: none;
+    stroke-width: 2.5;
+    pointer-events: stroke;
+}
+
+.ne-connection-line.exec {
+    stroke: #e8e6f0;
+    stroke-dasharray: 6 3;
+}
+
+.ne-connection-line.data {
+    stroke: #a29bfe;
+}
+
+.ne-temp-line {
+    fill: none;
+    stroke: rgba(124, 111, 247, 0.5);
+    stroke-width: 2;
+    stroke-dasharray: 4 4;
+}
+
+/* ── Node Component ── */
+.node-component {
+    position: absolute;
+    min-width: 160px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    z-index: 10;
+    cursor: move;
+    user-select: none;
+    transition: box-shadow var(--transition-fast);
+}
+
+.node-component:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.node-component.selected {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 16px var(--accent-glow), 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.node-header {
+    padding: 6px 12px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.node-icon {
+    font-size: 12px;
+}
+
+.node-title {
+    white-space: nowrap;
+}
+
+.node-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    min-height: 24px;
+}
+
+.node-pins-left,
+.node-pins-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.node-pin {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px;
+}
+
+.node-pin.output {
+    justify-content: flex-end;
+}
+
+.pin-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #888;
+    background: var(--bg-primary);
+    cursor: crosshair;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+    z-index: 20;
+}
+
+.pin-dot:hover {
+    transform: scale(1.3);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.pin-dot.exec {
+    border-radius: 2px;
+    width: 10px;
+    height: 14px;
+    clip-path: polygon(0 0, 70% 0, 100% 50%, 70% 100%, 0 100%);
+    border: none;
+    background: #888;
+}
+
+.pin-dot.exec:hover {
+    background: #fff;
+}
+
+.pin-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.node-props-preview {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 6px 10px;
+}
+
+.node-prop-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+}
+
+.node-prop-label {
+    color: var(--text-muted);
+}
+
+.node-prop-value {
+    color: var(--text-secondary);
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Properties Panel (Right) ── */
+.ne-properties {
+    width: 240px;
+    background: var(--bg-secondary);
+    border-left: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.ne-props-header {
+    padding: 12px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ne-props-empty {
+    padding: 20px 14px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.ne-props-section {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ne-props-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ne-prop-field {
+    margin-bottom: 8px;
+}
+
+.ne-prop-field label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+}
+
+.ne-prop-field input,
+.ne-prop-field select {
+    width: 100%;
+    padding: 6px 8px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    outline: none;
+}
+
+.ne-prop-field input:focus,
+.ne-prop-field select:focus {
+    border-color: var(--accent-primary);
+}
+
+/* ── UI Canvas Preview ── */
+.ne-ui-canvas {
+    position: relative;
+    background: #2d2d3f;
+    border: 2px dashed rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    margin: 20px;
+    overflow: hidden;
+}
+
+.ne-ui-component {
+    position: absolute;
+    cursor: move;
+    user-select: none;
+    transition: outline var(--transition-fast);
+}
+
+.ne-ui-component:hover {
+    outline: 1px solid rgba(124, 111, 247, 0.4);
+}
+
+.ne-ui-component.selected {
+    outline: 2px solid var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.ne-ui-component .ui-id-tag {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    font-size: 9px;
+    color: var(--accent-primary);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.ne-ui-component:hover .ui-id-tag,
+.ne-ui-component.selected .ui-id-tag {
+    opacity: 1;
+}
+
+/* ── Style Props ── */
+.ne-style-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.ne-style-row .ne-prop-field {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* ── Zoom Controls ── */
+.ne-zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ne-zoom-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 38px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Layer Panel ── */
+.ne-layer-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 8px 0;
+    margin-top: auto;
+}
+
+.ne-layer-add-btn {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.ne-layer-add-btn:hover {
+    background: rgba(124, 111, 247, 0.2);
+    color: var(--text-primary);
+}
+
+.ne-layer-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.ne-layer-eye {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px;
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+}
+
+.ne-layer-eye.visible {
+    opacity: 1;
+}
+
+.ne-layer-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ne-layer-item.active {
+    background: rgba(124, 111, 247, 0.1);
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.ne-layer-item.active .ne-layer-eye {
+    color: var(--accent-primary);
+    opacity: 1;
+}
+
+/* ── Log Console ── */
+.ne-console {
+    height: 120px;
+    background: #1a1a2e;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    overflow-y: auto;
+    padding: 8px 12px;
+    font-family: 'Consolas', monospace;
+    font-size: 11px;
+}
+
+.ne-console-line {
+    color: var(--text-muted);
+    padding: 1px 0;
+}
+
+.ne-console-line .time {
+    color: var(--text-muted);
+    margin-right: 8px;
+}
+
+.ne-console-line .msg {
+    color: var(--text-secondary);
+}

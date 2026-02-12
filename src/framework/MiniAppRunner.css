@@ -1,0 +1,256 @@
+.miniapp-runner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+.mar-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mar-toolbar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mar-toolbar-spacer {
+    flex: 1;
+}
+
+.mar-toolbar-btn {
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: var(--neu-shadow-soft);
+    transition: all var(--transition-fast);
+}
+
+.mar-toolbar-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+}
+
+.mar-canvas {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mar-app-canvas {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.mar-ui-element {
+    position: absolute;
+}
+
+/* ── Page Tabs ── */
+.mar-page-tabs {
+    display: flex;
+    gap: 2px;
+    margin-left: 12px;
+}
+
+.mar-page-tab {
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mar-page-tab:hover {
+    color: var(--text-secondary);
+    background: rgba(124, 111, 247, 0.08);
+}
+
+.mar-page-tab.active {
+    color: var(--accent-primary);
+    background: rgba(124, 111, 247, 0.15);
+    font-weight: 600;
+}
+
+/* ── App Manager ── */
+.app-manager {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+}
+
+.am-header {
+    padding: 20px 24px 16px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.am-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.am-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.am-toolbar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.am-create-btn {
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 10px var(--accent-glow);
+    transition: all var(--transition-fast);
+}
+
+.am-create-btn:hover {
+    box-shadow: 0 5px 16px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+.am-app-grid {
+    flex: 1;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    overflow-y: auto;
+    align-content: start;
+}
+
+.am-app-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: var(--neu-shadow-raised);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.am-app-card:hover {
+    border-color: rgba(124, 111, 247, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.am-app-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+}
+
+.am-app-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.am-app-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.am-app-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.am-app-action-btn {
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    border: none;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.am-app-action-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+}
+
+.am-app-action-btn.danger:hover {
+    background: rgba(255, 75, 75, 0.15);
+    color: #ff6b6b;
+}
+
+.am-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+}
+
+.am-empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.3;
+}
+
+.am-empty h3 {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.am-empty p {
+    font-size: 13px;
+}
