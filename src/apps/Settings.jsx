@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { MdSave, MdSettings, MdCloud, MdViewList, MdArrowUpward, MdArrowDownward, MdAdd, MdDelete } from 'react-icons/md'
+import { MdSave, MdSettings, MdCloud, MdViewList, MdArrowUpward, MdArrowDownward, MdAdd, MdDelete, MdFullscreen, MdFullscreenExit } from 'react-icons/md'
 import { HiPaintBrush } from 'react-icons/hi2'
 import './Settings.css'
 
@@ -25,6 +25,12 @@ function Settings({
                 >
                     <MdViewList /> 프로그램바 관리
                 </button>
+                <button
+                    className={`settings-tab-btn ${activeTab === 'system' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('system')}
+                >
+                    <MdSettings /> 시스템 설정
+                </button>
             </aside>
 
             <main className="settings-content">
@@ -37,6 +43,9 @@ function Settings({
                         onUpdate={onUpdateProgramApps}
                         allApps={allAvailableApps}
                     />
+                )}
+                {activeTab === 'system' && (
+                    <SystemSettings />
                 )}
             </main>
         </div>
@@ -151,6 +160,67 @@ function ProgramBarSettings({ currentApps, onUpdate, allApps }) {
                         <button className="add" onClick={() => addApp(app.id)}><MdAdd /></button>
                     </div>
                 ))}
+            </div>
+        </div>
+    )
+}
+
+function SystemSettings() {
+    const [isFullscreen, setIsFullscreen] = useState(!!document.fullscreenElement)
+
+    useEffect(() => {
+        const handleFsChange = () => {
+            setIsFullscreen(!!document.fullscreenElement)
+        }
+        document.addEventListener('fullscreenchange', handleFsChange)
+        return () => document.removeEventListener('fullscreenchange', handleFsChange)
+    }, [])
+
+    const toggleFullscreen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message}`)
+            })
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen()
+            }
+        }
+    }
+
+    return (
+        <div className="settings-section">
+            <h3 className="settings-section-title">시스템 동작 설정</h3>
+
+            <div className="settings-row">
+                <label>디스플레이</label>
+                <div className="settings-info-card">
+                    <div className="settings-info-text">
+                        <strong>전체 화면 모드</strong>
+                        <p>브라우저 UI를 숨기고 대시보드를 화면에 꽉 채웁니다. 모바일 환경에서 유용합니다.</p>
+                    </div>
+                    <button
+                        className={`settings-action-btn ${isFullscreen ? 'active' : ''}`}
+                        onClick={toggleFullscreen}
+                    >
+                        {isFullscreen ? (
+                            <>
+                                <MdFullscreenExit /> 전체 화면 해제
+                            </>
+                        ) : (
+                            <>
+                                <MdFullscreen /> 전체 화면 시작
+                            </>
+                        )}
+                    </button>
+                </div>
+            </div>
+
+            <div className="settings-row" style={{ marginTop: '20px' }}>
+                <label>도움말</label>
+                <div className="settings-info-box">
+                    <p>💡 안드로이드나 iOS 기기에서는 브라우저 메뉴의 "홈 화면에 추가" 기능을 사용하면 별도의 조작 없이 항상 전체 화면으로 앱을 사용하실 수 있습니다.</p>
+                </div>
             </div>
         </div>
     )
